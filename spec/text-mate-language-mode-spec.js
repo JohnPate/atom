@@ -6,11 +6,12 @@ const _ = require('underscore-plus')
 const dedent = require('dedent')
 const {it, fit, ffit, fffit, beforeEach, afterEach} = require('./async-spec-helpers')
 
-describe('TextMateLanguageMode', () => {
+fdescribe('TextMateLanguageMode', () => {
   let languageMode, buffer, config
 
   beforeEach(async () => {
     config = atom.config
+    config.settings.core.useTreeSitterParsers = false
     // enable async tokenization
     TextMateLanguageMode.prototype.chunkSize = 5
     jasmine.unspy(TextMateLanguageMode.prototype, 'tokenizeInBackground')
@@ -20,6 +21,7 @@ describe('TextMateLanguageMode', () => {
   afterEach(() => {
     buffer && buffer.destroy()
     languageMode && languageMode.destroy()
+    config.settings.core.useTreeSitterParsers = true
   })
 
   describe('when the editor is constructed with the largeFileMode option set to true', () => {
