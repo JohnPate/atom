@@ -6,7 +6,7 @@ const _ = require('underscore-plus')
 const dedent = require('dedent')
 const {it, fit, ffit, fffit, beforeEach, afterEach} = require('./async-spec-helpers')
 
-fdescribe('TextMateLanguageMode', () => {
+describe('TextMateLanguageMode', () => {
   let languageMode, buffer, config
 
   beforeEach(async () => {
